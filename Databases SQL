@@ -5,3 +5,25 @@ CREATE TABLE Orders (
     ItemID INT REFERENCES Items(ItemID),
     OrderQuantity INT
 );
+
+
+INSERT INTO Orders (OrderID, CustomerID, DateOfOrder, ItemID, OrderQuantity)
+VALUES (1, 1, '2024-01-22', 101, 5),
+       (2, 1, '2024-01-23', 102, 3),
+       (3, 1, '2024-01-24', 105, 2);
+
+
+
+CREATE TABLE Items (
+    ItemID INT PRIMARY KEY,
+    ItemName VARCHAR(255),
+    RawIngredients TEXT,
+    QuantityOfRawMaterials INT
+);
+
+INSERT INTO Items (ItemID, ItemName, RawIngredients, QuantityOfRawMaterials)
+VALUES (101, 'Item1', 'Ingredient1, Ingredient2, Ingredient3', '5, 3, 2'),
+       (102, 'Item2', 'Ingredient4, Ingredient5', '4, 2');
+
+
+
