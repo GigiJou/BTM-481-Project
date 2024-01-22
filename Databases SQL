@@ -1,0 +1,7 @@
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT REFERENCES Customers(CustomerID),
+    DateOfOrder DATE,
+    ItemID INT REFERENCES Items(ItemID),
+    OrderQuantity INT
+);
