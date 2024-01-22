@@ -1,0 +1,45 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from datetime import datetime
+
+# Assuming you have a SQLite database
+import sqlite3
+
+# Step 1: Connect to the SQL database
+conn = sqlite3.connect('Orders')
+query = 'SELECT * FROM your_table;'
+df = pd.read_sql_query(query, conn)
+
+# Step 2: Retrieve data on current inventory levels and past orders
+# Assuming you have columns 'date', 'inventory_level', 'order_quantity'
+df['date'] = pd.to_datetime(df['date'])
+df = df.set_index('date')
+
+# Step 3: Analyze the data
+# You may want to explore and analyze the data to identify patterns and trends
+# For simplicity, let's use a linear regression model for forecasting
+
+# Step 4: Use a forecasting model
+# Split data into training and testing sets
+train_size = int(len(df) * 0.8)
+train, test = df[:train_size], df[train_size:]
+
+X_train, y_train = train.index.values.reshape(-1, 1), train['inventory_level'].values
+X_test, y_test = test.index.values.reshape(-1, 1), test['inventory_level'].values
+
+# Train a linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Step 5: Visualize the forecast
+plt.figure(figsize=(10, 6))
+plt.scatter(df.index, df['inventory_level'], label='Actual Inventory Level', color='blue')
+plt.plot(df.index, model.predict(df.index.values.reshape(-1, 1)), label='Forecast', color='red')
+plt.xlabel('Date')
+plt.ylabel('Inventory Level')
+plt.title('Raw Material Forecast')
+plt.legend()
+plt.show()
