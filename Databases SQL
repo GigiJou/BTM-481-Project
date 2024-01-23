@@ -1,3 +1,4 @@
+-- Table to hold all historical order
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
     CustomerID INT REFERENCES Customers(CustomerID),
@@ -6,9 +7,10 @@ CREATE TABLE Orders (
     OrderQuantity INT
 );
 
+--Test Data for Orders Table
 
 INSERT INTO Orders (OrderID, CustomerID, DateOfOrder, ItemID, OrderQuantity)
-VALUES (1, 1, '2024-01-22', 101, 5),
+VALUES (1, 1, '2024-01-22', 101,102,109,105,1,1,1,1),
        (2, 1, '2024-01-23', 102, 3),
        (3, 1, '2024-01-24', 105, 2);
 
@@ -20,9 +22,9 @@ CREATE TABLE Items (
     RawIngredients TEXT,
     QuantityOfRawMaterials INT
 );
-
+--Test Data for Items
 INSERT INTO Items (ItemID, ItemName, RawIngredients, QuantityOfRawMaterials)
-VALUES (101, 'Item1', 'Ingredient1, Ingredient2, Ingredient3', '5, 3, 2'),
+VALUES (101, 'Chicken Alfredo', 'Chicken Breast, Cream, Broccoli, Penne Pasta', '120, 40, 100, 110'),
        (102, 'Item2', 'Ingredient4, Ingredient5', '4, 2');
 
 
