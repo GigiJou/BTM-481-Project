@@ -19,13 +19,37 @@ VALUES (1, 1, '2024-01-22', 101,102,109,105,1,1,1,1),
 CREATE TABLE Items (
     ItemID INT PRIMARY KEY,
     ItemName VARCHAR(255),
-    RawIngredients TEXT,
+    RawIngredients TEXT REFERENCES PurOrd(RawIngridents),
     QuantityOfRawMaterials INT
 );
 --Test Data for Items
 INSERT INTO Items (ItemID, ItemName, RawIngredients, QuantityOfRawMaterials)
 VALUES (101, 'Chicken Alfredo', 'Chicken Breast, Cream, Broccoli, Penne Pasta', '120, 40, 100, 110'),
        (102, 'Item2', 'Ingredient4, Ingredient5', '4, 2');
+--Purchase order to be created based on forecast
 
+ CREATE TABLE PurOrd (
+        RawIngridients VARCHAR(255) PRIMARY KEY,
+        Size Decimal,  
+        Quantity INT, 
+        
+);
+--Invoice recieved from supplier
 
+    CREATE TABLE InvoiceOrd (
+        RawIngridients VARCHAR(255) Primary Key,
+        Size Decimal,
+        Quanitity INT,
+        Cost Decimal,
+        TotalCost Decimal, 
+):
+
+--Table created to confirm if all items were recieved from the supplier
+    CREATE TABLE InvoiceCon (
+        RawIngridients VARCHAR(255) PRIMARY KEY,
+        Size Decimal,  
+        Quantity INT, 
+        Confirmed Bit,
+        
+);
 
