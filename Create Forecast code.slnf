@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "CreateForecastForm.sln",
+    "projects": [
+      "CreateForecastForm\\CreateForecastForm.csproj"
+    ]
+  }
+}
